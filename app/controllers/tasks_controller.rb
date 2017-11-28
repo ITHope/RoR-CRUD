@@ -1,12 +1,15 @@
 class TasksController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
     render 'tasks/index'
   end
 
   def create
-    Task.create(task_create_params)
+    current_user.tasks.create(task_create_params)
     redirect_to '/'
   end
 

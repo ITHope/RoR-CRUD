@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :models
+  root to: "tasks#index"
   get '/', to:'tasks#index'
   # resources :tasks do
   #   get 'create', to: 'tasks#new'
